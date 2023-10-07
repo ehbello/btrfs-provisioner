@@ -16,6 +16,8 @@ RUN --mount=type=cache,target=/build \
 
 
 FROM debian:12-slim
+RUN apt-get update -y && \
+    apt-get install -y libssl3
 
 ENV RUST_BACKTRACE=full
 
