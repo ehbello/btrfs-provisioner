@@ -15,7 +15,9 @@ RUN --mount=type=cache,target=/build \
     cp /build/*/btrfs-provisioner /output/btrfs-provisioner
 
 
-FROM debian:11-slim
+FROM debian:12-slim
+RUN apt-get update -y && \
+    apt-get install -y libssl3
 
 ENV RUST_BACKTRACE=full
 
