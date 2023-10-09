@@ -94,10 +94,7 @@ impl Controller {
             .map_ok(WatchedResource::Pvc);
         let pv_reflector = reflector(pv_writer, watcher(persistent_volumes, watcher::Config::default()))
             .map_ok(WatchedResource::Pv);
-        let node_reflector = reflector(node_writer, watcher(nodes, watcher::Config {
-            label_selector: Some("!node-role.kubernetes.io/master".into()),
-            ..watcher::Config::default()
-        }))
+        let node_reflector = reflector(node_writer, watcher(nodes, watcher::Config::default()))
             .map_ok(WatchedResource::Node);
 
         let stream = stream::select_all(vec![pvc_reflector.boxed(), pv_reflector.boxed(), node_reflector.boxed()]);
