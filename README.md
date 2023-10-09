@@ -35,7 +35,7 @@ First of all, **this is experimental software**. You're up on your own should yo
 
 #### Helm
 
-`helm repo add btrfs-provisioner https://timoschwarzer.github.io/btrfs-provisioner`
+`helm repo add btrfs-provisioner https://ehbello.github.io/btrfs-provisioner`
 
 
 #### Manual

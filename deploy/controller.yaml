@@ -18,7 +18,7 @@ spec:
       containers:
       - name: controller
         imagePullPolicy: Always
-        image: ghcr.io/timoschwarzer/btrfs-provisioner
+        image: ghcr.io/ehbello/btrfs-provisioner
         env:
         - name: IMAGE
-          value: ghcr.io/timoschwarzer/btrfs-provisioner
+          value: ghcr.io/ehbello/btrfs-provisioner
