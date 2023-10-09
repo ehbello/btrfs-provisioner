@@ -15,7 +15,7 @@ RUN --mount=type=cache,target=/build \
     cp /build/*/btrfs-provisioner /output/btrfs-provisioner
 
 
-FROM debian:11-slim
+FROM debian:12-slim
 
 ENV RUST_BACKTRACE=full
 
