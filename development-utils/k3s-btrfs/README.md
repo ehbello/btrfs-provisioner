@@ -25,5 +25,5 @@ k3d cluster create -i k3s-btrfs --no-lb -a 1 -s 1 --k3s-arg "--disable=local-sto
 3. Mount that filesystem to `/btrfs_vol`
 
 ```shell
-k3d cluster create -i k3s-btrfs --no-lb -a 1 -s 1 --k3s-arg "--disable=local-storage@server:0" -v "/btrfs_vol:/volumes@agent:0"
+k3d cluster create -i k3s-btrfs --no-lb -a 1 -s 1 --k3s-arg "--disable=local-storage@server:0" -v "/btrfs_vol:/volumes@server:0" -v "/btrfs_vol:/volumes@agent:0"
 ```
