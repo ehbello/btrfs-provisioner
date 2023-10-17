@@ -253,11 +253,17 @@ impl Provisioner {
                 bail!("StorageClass for node {} already exists: {}", &self.node_name, existing_storage_class.name_any());
             }
 
+            let mut annotations: BTreeMap<String, String> = BTreeMap::new();
+            if *DEFAULT_STORAGE_CLASS_ENABLED {
+               annotations.insert("storageclass.kubernetes.io/is-default-class".into(), "true".into());
+            }
+
             storage_classes.create(&PostParams::default(), &StorageClass {
                 provisioner: PROVISIONER_NAME.into(),
                 allow_volume_expansion: Some(false),
                 metadata: ObjectMeta {
                     name: Some(STORAGE_CLASS_PER_NODE_NAME_PATTERN.to_owned().replace("{}", &self.node_name)),
+                    annotations: Some(annotations),
                     labels: Some(BTreeMap::from([
                         (STORAGE_CLASS_CONTROLLING_NODE_LABEL_NAME.into(), self.node_name.to_owned())
                     ])),

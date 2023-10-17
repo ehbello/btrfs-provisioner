@@ -42,6 +42,15 @@ config:
   # You need to clean up archives manually when you enable this option.
   archiveOnDelete: false
 
+  # Add the required annotation to mark this StorageClas as default.
+  #
+  # NOTE: Please note that at most one StorageClass can be marked as default. If two or more of them
+  # are marked as default, a PersistentVolumeClaim without storageClassName explicitly specified
+  # cannot be created. To avoid this, mark other default StorageClass as non-default removing their
+  # annotation.
+  defaultClass:
+    enable: false
+
   # Options for the dynamic StorageClass
   dynamicStorageClass:
     # Enable the dynamic StorageClass (currently unsupported by btrfs-provisioner).
@@ -63,6 +72,7 @@ env:
   NAMESPACE: "{{ $.Release.Namespace }}"
   VOLUMES_DIR: "{{ .Values.config.volumesDir }}"
   ARCHIVE_ON_DELETE: "{{ .Values.config.archiveOnDelete }}"
+  DEFAULT_STORAGE_CLASS_ENABLED: "{{ .Values.config.defaultClass.enable }}"
   DYNAMIC_STORAGE_CLASS: "{{ .Values.config.dynamicStorageClass.enable }}"
   DYNAMIC_STORAGE_CLASS_NAME: "{{ .Values.config.dynamicStorageClassName }}"
   STORAGE_CLASS_PER_NODE: "{{ .Values.config.storageClassPerNode.enable }}"

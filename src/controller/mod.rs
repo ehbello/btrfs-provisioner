@@ -380,6 +380,11 @@ impl Controller {
                                     ..EnvVar::default()
                                 },
                                 EnvVar {
+                                    name: "DEFAULT_STORAGE_CLASS_ENABLED".into(),
+                                    value: Some(if *DEFAULT_STORAGE_CLASS_ENABLED { "true" } else { "false" }.into()),
+                                    ..EnvVar::default()
+                                },
+                                EnvVar {
                                     name: "STORAGE_CLASS_PER_NODE_ENABLED".into(),
                                     value: Some(if *STORAGE_CLASS_PER_NODE_ENABLED { "true" } else { "false" }.into()),
                                     ..EnvVar::default()
